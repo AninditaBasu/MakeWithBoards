@@ -1,0 +1,1 @@
+[Download SD Memory Card Formatter](https://www.sdcard.org/downloads/formatter/). Before you can load an operating system on your microSD card, you must format it. Use the formatter provided by the SD Association because this formatter is platform-agnostic. 

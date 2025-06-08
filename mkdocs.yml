@@ -1,0 +1,94 @@
+site_name: Make with boards
+site_description: Say hello to development boards and microcontrollers. Tinker with Raspberry Pi, Arduino, and more. Make beginner-friendly, practical projects.
+copyright: '&copy; 2025 Anindita Basu'
+#
+docs_dir: docs
+#
+nav:
+- 'Home': 'index.md'
+- 'Photo frame':
+    - 'Overview': 'topics/photo_frame_intro.md'
+    - 'Steps': 'topics/photo_frame_steps.md'
+- 'Clock chimes':
+    - 'Overview': 'topics/clock_chimes_intro.md'
+    - 'Steps': 'topics/clock_chimes_steps.md'
+- 'Surveillance camera':
+    - 'Overview': 'topics/security_camera_intro.md'
+    - 'Steps': 'topics/security_camera_steps.md'
+
+#
+extra:
+  social:
+    - icon: fontawesome/brands/twitter
+      link: https://x.com/anindita_basu
+      name: Anindita on Twitter
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/aninditabasu/
+      name: Anindita on LinkedIn
+
+# ===============================
+# mkdocs-material theme entries start here
+# https://squidfunk.github.io/mkdocs-material/getting-started/
+#
+theme:
+    name: material
+    language: en
+    favicon: images/logo_2.png
+    logo: images/logo_2_removebg.png
+    palette:
+      primary: red
+      accent: teal
+    features:
+      - navigation.top
+      - navigation.footer
+      - toc.follow
+# mkdocs-material theme entries end here
+# ===============================
+#
+# Extensions list (https://squidfunk.github.io/mkdocs-material/reference/abbreviations/):
+#  - meta, which is part of the standard Markdown library, and is for front matter in a doc file
+#  - admonition, which is part of the standard Markdown library, and is for notes and warnings
+#  - attr_list, which enables the adding of HTML attributes and CSS classes to several Markdown elements
+#  - def_list, which is part of the standard Markdown library, and is for definition lists
+#  - pymdownx.tabbed, which is part of Python Markdown Extensions, and is used for tabbed content blocks
+#  - pymdownx.superfences, which is part of the standard Markdown library, and is for syntax highlighting of code blocks.
+#  - pymdownx.highlight, which is part of the standard Markdown library, and is for rendering line numbers as part of the line itself
+#  - pymdownx.details, which supercharges the Admonition extension, making the resulting call-outs collapsible
+#  - pymdownx.tasklist, which is part of Python Markdown Extensions and shows lists with styled checkboxes
+#  - toc, which is a Material for Mkdocs extension for the page-level ToC header
+#  - footnotes, which is a Python Markdown Extension for footnotes
+#  - ...
+markdown_extensions:
+  - meta
+  - admonition
+  - attr_list
+  - def_list
+  - toc:
+      title: On this page
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight
+  - pymdownx.details
+  - pymdownx.tasklist:
+      custom_checkbox: true
+      clickable_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - footnotes
+#
+# Plug-ins list:
+# - search, an in-built MkDocs plug-in for search
+# - macros, for jinja style includes, variables, and conditions (https://github.com/fralau/mkdocs_macros_plugin) 
+# - tags, for tagging pages for better search (https://squidfunk.github.io/mkdocs-material/setup/setting-up-tags/)
+# - ...
+plugins:
+    - search
+    - macros:
+        include_dir: docs/_includes
+# end of mkdocs config file
