@@ -1,6 +1,6 @@
 #  <img src = "../../images/logo_1.png" width="15%" />Make a surveillance camera
 
-The steps to make a surveillance are these:
+These are the steps:
 
 1. Prepare your laptop.
 1. Download the Raspberry Pi operating system.
