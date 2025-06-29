@@ -1,0 +1,793 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Say hello to development boards and microcontrollers. Tinker with Raspberry Pi, Arduino, and more. Make beginner-friendly, practical projects.">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../images/logo_2.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Python photo frame - Make with boards</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#write-the-python-code-for-displaying-the-photos" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Make with boards" class="md-header__button md-logo" aria-label="Make with boards" data-md-component="logo">
+      
+  <img src="../../images/logo_2_removebg.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Make with boards
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Python photo frame
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Make with boards" class="md-nav__button md-logo" aria-label="Make with boards" data-md-component="logo">
+      
+  <img src="../../images/logo_2_removebg.png" alt="logo">
+
+    </a>
+    Make with boards
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Photo frame
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Photo frame
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../topics/photo_frame_intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../topics/photo_frame_steps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Steps
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Clock chimes
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Clock chimes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../topics/clock_chimes_intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../topics/clock_chimes_steps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Steps
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Surveillance camera
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Surveillance camera
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../topics/security_camera_intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../topics/security_camera_steps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Steps
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#write-the-python-code-for-displaying-the-photos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Write the Python code for displaying the photos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Write the Python code for displaying the photos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      The code
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#troubleshooting-the-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting the code
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Python photo frame</h1>
+
+<h2 id="write-the-python-code-for-displaying-the-photos">Write the Python code for displaying the photos</h2>
+<p>A digital photo frame reads photo files from a storage device, and displays them on the screen for a specified time. For the photo frame that you're building, this job will be done by a Python program.</p>
+<p>The operating system that you installed on the Raspberry Pi already includes Python, as well as an integrated development environment (IDE) that makes it easier for you to write, run, and edit Python programs. This IDE is the Thonny IDE. You'll use Thonny to write the photo frame program.</p>
+<ol>
+<li>Plug in the USB drive containing your photos to the Raspberry Pi, and switch it on.</li>
+<li>If you don't have an external keyboard or mouse, log in remotely to your Raspberry Pi by using Connect:<ol>
+<li>On your laptop, open <code>https://connect.raspberrypi.com/</code> and sign in.</li>
+<li>On the Devices page, click <strong>Connect via &gt; Screen sharing</strong>, and wait for a few seconds for the remote session to start. You should then see the Raspberry Pi desktop in your laptop browser window.</li>
+</ol>
+</li>
+<li>Install any patches, fixes, and upgrades that might have been made to the operating system by opening the Raspberry Pi terminal window (the console icon near the top left) and running the following two commands one after the other:<ul>
+<li><code>sudo apt-get update</code></li>
+<li><code>sudo apt-get upgrade</code></li>
+</ul>
+</li>
+<li>Open Thonny by clicking the Raspberry Pi icon near the top left, and then clicking <strong>Programming &gt; Thonny</strong>.</li>
+<li>Create a virtual environment for your project. A virtual environment is like a boxed enclosure that contains all the Python libraries and packages that are needed for your code to run. Click <strong>Tools &gt; Options</strong>, and then click <strong>Interpreter</strong>. Make sure that the interpreter is <code>Local Python 3</code>. Then, click <strong>New virtual environment</strong> and follow the onscreen guidance to create an empty folder and designate it as the place where your project will live. When everything's done, click <strong>OK</strong>.</li>
+<li>Open a new file by clicking <strong>File &gt; New</strong>. Copy into it the code from <a href="#the-code">The code</a> section of this page. Then, edit line 20 to change <code>usb_dir = '/media/pi/'</code> to <code>usb_dir = '/media/&lt;yourPiUserName&gt;/'</code>. For example, if the user name that you specified when setting up the Raspberry Pi was <code>oracle</code>, line 20 in the code should be <code>usb_dir = '/media/oracle/'</code>.</li>
+<li>Install a Python package called <code>Pillow</code> in the virtual environment. To do so, click <strong>Tools &gt; Manage packages</strong>, search for <code>Pillow</code>, and click <strong>Install</strong>.</li>
+<li>Save the file, and click the <strong>Run</strong> icon. You should see your photos being picked up and displayed one after the other.</li>
+</ol>
+<video width="80%" height="80%" controls>
+  <source src="../../images/demo_frame.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+<p>Your photo frame is now ready. You can leave it as is now, or you might choose to refine it.</p>
+<h3 id="the-code">The code</h3>
+<div class="highlight"><pre><span></span><code>import os
+import time
+import tkinter as tk
+from PIL import Image, ImageTk
+
+# Function to get a list of image files from a directory and its subdirectories
+def get_image_files(directory):
+    image_extensions = {&#39;.png&#39;, &#39;.jpg&#39;, &#39;.jpeg&#39;, &#39;.bmp&#39;, &#39;.gif&#39;}
+    image_files = []
+    for root, _, files in os.walk(directory):
+        for file in files:
+            if file.lower().endswith(tuple(image_extensions)):
+                image_files.append(os.path.join(root, file))
+    return image_files
+
+# Main function to run the digital photo frame
+def digital_photo_frame():
+    # Directories to scan for images
+    local_dir = os.getcwd()  # Current working directory
+    usb_dir = &#39;/media/pi/&#39;  # The USB mount path in the Raspberry Pi
+    # Collect all image files
+    images = get_image_files(local_dir) + get_image_files(usb_dir)
+    if not images:
+        print(&quot;Couldn&#39;t find any image files in the specified directories.&quot;)
+        return
+    # Create a Tkinter window
+    root = tk.Tk()
+    root.title(&#39;Raspberry Pi Photo Frame&#39;) # The title doesn&#39;t matter; it won&#39;t be displayed
+    # Fullscreen settings (optional)
+    root.attributes(&#39;-fullscreen&#39;, True)
+    root.bind(&quot;&lt;Escape&gt;&quot;, lambda e: root.destroy())  # Exit fullscreen with the Esc key
+    # Label to display the image
+    label = tk.Label(root)
+    label.pack(expand=True, fill=tk.BOTH)
+    # Function to update the displayed image
+    def update_image(index):
+        img_path = images[index]
+        img = Image.open(img_path)
+        img = img.resize((root.winfo_screenwidth(), root.winfo_screenheight()), Image.Resampling.LANCZOS)
+        photo = ImageTk.PhotoImage(img)
+        label.config(image=photo)
+        label.image = photo
+        root.after(10000, update_image, (index + 1) % len(images))  # Change the image every 10 seconds
+    # Start displaying the first image
+    update_image(0)
+    # Run the Tkinter event loop
+    root.mainloop()
+
+# Run the script
+if __name__ == &quot;__main__&quot;:
+    digital_photo_frame()
+</code></pre></div>
+<p><br/>
+<span style="font-size:75%;">You can also <a href="https://raw.githubusercontent.com/AninditaBasu/pi-projects/refs/heads/main/_includes/pyscript_photo_frame.py">download the raw Python file</a>.</span></p>
+<p>Notice the first four lines of the code.</p>
+<div class="highlight"><pre><span></span><code>import os
+import time
+import tkinter as tk
+from PIL import Image, ImageTk
+</code></pre></div>
+<p>This is where you import all the libraries and packages needed for this project. A Python library is a collection of programs that do a specific task, and can be called in your program by their name. Libraries make it easy to do things that would've otherwise needed you to write out, manually, the several lines of code needed to do that thing. For example, assume you need to count the number of words in a sentence. The manual (non-library) way of doing so would be to write something like this:</p>
+<div class="highlight"><pre><span></span><code>sentence = &#39;Beside the lake, beneath the trees, fluttering and dancing&#39;
+word_counts = {}
+words = sentence.split()  # Split the sentence into words
+for word in words:
+    word = word.lower().strip(&quot;.,!?&quot;)  # Remove punctuation
+    if word in word_counts:
+        word_counts[word] += 1
+    else:
+        word_counts[word] = 1
+print(&#39;This sentence contains`, word_counts, &#39;words.&#39;)
+</code></pre></div>
+<p>Now, imagine doing the same thing with a library called <code>collections</code>, which contains code to do the heavy lifting. If you were to use this library, your code would look something like this, where you use a class called <code>Counter</code> to do the counting:</p>
+<div class="highlight"><pre><span></span><code>from collections import Counter
+
+# Count word occurrences using a library
+sentence = &#39;There was a time when meadow, grove, and stream, and every common sight to me did seem apparelled in celestial light.&#39;
+words = sentence.lower().split()
+normalized_words = [word.strip(&quot;.,!?&quot;) for word in words]
+word_counts = Counter(normalized_words)
+
+print(&#39;This sentence contains`, word_counts, &#39;words.&#39;)
+</code></pre></div>
+<p>With libraries, you can write your programs with fewer lines of code, while using universal methods that can be recognised by any other Python programmer more easily than if they had to read non-library code.</p>
+<p>Some libraries are included by default in every Python installation. The libraries called <code>os</code>, <code>time</code>, and <code>tkinter</code>, called in the first three lines, are such libraries. Some other libraries are ones that you manually install in the virtual environment of your project. The <code>pillow</code> library, called here as <code>PIL</code>, is one such library. It is a library for handling images.</p>
+<p>Take a look at this part of the code:</p>
+<div class="highlight"><pre><span></span><code>image_extensions = {&#39;.png&#39;, &#39;.jpg&#39;, &#39;.jpeg&#39;, &#39;.bmp&#39;, &#39;.gif&#39;}
+</code></pre></div>
+<p>All the possible photo extensions are listed here, but if you think any is missing, go ahead and add it here. If any of your photos use extensions spelt in uppercase letters (for example, <code>.JPEG</code> or <code>.PNG</code>), it's a good idea to add them to this list too.</p>
+<p>See this bit of the code:</p>
+<div class="highlight"><pre><span></span><code># Fullscreen settings (optional)
+root.attributes(&#39;-fullscreen&#39;, True)
+root.bind(&quot;&lt;Escape&gt;&quot;, lambda e: root.destroy())  # Exit fullscreen with the Esc key
+</code></pre></div>
+<p>You would've noticed that the display takes up the entire screen. Now, what if you need to stop the program from running? None of the Raspberry Pi controls are displayed anywhere. To take care of this eventuality, the <code>Esc</code> key of the keyboard has been bound to the action to stop the program midway.</p>
+<p>Take a look at this bit, which controls the time for which a photo is displayed:</p>
+<div class="highlight"><pre><span></span><code>root.after(10000, update_image, (index + 1) % len(images))  # Change the image every 10 seconds
+</code></pre></div>
+<p>The number <code>10000</code> is in milliseconds. It means, every photo is displayed for 10 seconds. You can change this value to whatever you want the time lag between photos to be.</p>
+<h3 id="troubleshooting-the-code">Troubleshooting the code</h3>
+<p>If <code>Pillow</code> does not show up in the search results when you try to install it through <strong>Tools &gt; Manage packages</strong>:</p>
+<ol>
+<li>Close Thonny.</li>
+<li>Open the terminal and run the following two commands one after the other:<ul>
+<li><code>sudo apt update</code></li>
+<li><code>sudo apt install python3-full</code>  </li>
+</ul>
+</li>
+<li>Go to the directory that contains your project files, and look for a file called <code>pyvenv.cfg</code>. Right-click the file, click <strong>Text editor</strong>, and make sure the value of <code>include-system-site-packages</code> is set to <code>true</code>. Save the file, and close it.</li>
+<li>Reopen Thonny, and click <strong>Tools &gt; Manage packages</strong>. </li>
+</ol>
+<p>You should now be able to see <code>Pillow</code> in the list of installed packages.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2025 Anindita Basu
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://x.com/anindita_basu" target="_blank" rel="noopener" title="Anindita on Twitter" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://www.linkedin.com/in/aninditabasu/" target="_blank" rel="noopener" title="Anindita on LinkedIn" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.top", "navigation.footer", "toc.follow"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>
